@@ -12,3 +12,4 @@ class Turma:
             'senha': self.__senha,
             'administrador': self.admin
         }
+
