@@ -1,5 +1,3 @@
-#GARANTIR QUE NÃO TENHA MATRÍCULAS REPETIDAS
-
 from tkinter import Frame, Label, Entry, Button, ttk, messagebox, CENTER
 import manipulacao_arquivos.manipulador_arquivos_aluno as maa
 import manipulacao_arquivos.manipulador_arquivos_professor as map
