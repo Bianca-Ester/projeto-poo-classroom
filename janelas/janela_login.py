@@ -1,5 +1,3 @@
-#terminar configurações adicionais
-
 from tkinter import Frame, Label, Entry, Button, ttk, messagebox, CENTER
 import manipulacao_arquivos.manipulador_arquivos_aluno as maa
 import manipulacao_arquivos.manipulador_arquivos_professor as map
@@ -25,7 +23,7 @@ class JanelaLogin:
         self.entrada_senha.grid(row=1, column=1, sticky="W", padx=5, pady=5)
 
         opcoes = ["Aluno", "Professor"]
-        self.combobox = ttk.Combobox(self.frame, values=opcoes)
+        self.combobox = ttk.Combobox(self.frame, values=opcoes, state="readonly")
         self.combobox.grid(row=2, column=0, padx=5, pady=5, columnspan=2)
         self.combobox.set("Selecione uma opção")
 
@@ -40,18 +38,18 @@ class JanelaLogin:
 
     def abrir_janela_principal_professor(self):
         self.limpar_campos()
-        JanelaPrincipalProfessor(self.janela)
+        JanelaPrincipalProfessor()
 
     def abrir_janela_principal_aluno(self):
         self.limpar_campos()
-        JanelaPrincipalAluno(self.janela)
+        JanelaPrincipalAluno()
 
     def check_existencia_professor(self):
         matricula_digitada = self.entrada_matricula.get()
         
         var = map.buscar_professor_por_matricula(matricula_digitada)
-        if var == matricula_digitada:
-            self.abrir_janela_principal_professor()
+        if var is not None:
+            self.abrir_janela_principal_aluno()
         else:
             messagebox.showerror("Erro", "Professor não encontrado")
 
@@ -59,7 +57,7 @@ class JanelaLogin:
         matricula_digitada = self.entrada_matricula.get()
         
         var = maa.buscar_aluno_por_matricula(matricula_digitada)
-        if var == matricula_digitada:
+        if var is not None:
             self.abrir_janela_principal_aluno()
         else:
             messagebox.showerror("Erro", "Aluno não encontrado")
@@ -80,6 +78,7 @@ class JanelaLogin:
         if recuperacao_combobox == "Professor":
             self.check_existencia_professor()
         elif recuperacao_combobox == "Aluno":
-            self.cadastrar_aluno()
+            self.check_existencia_aluno()
         else:
             messagebox.showerror('Erro', 'Selecione aluno ou professor')
+
