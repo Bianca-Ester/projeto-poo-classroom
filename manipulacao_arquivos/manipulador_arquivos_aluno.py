@@ -1,5 +1,3 @@
-#CHECAR UTILIDADE
-
 import json
 import os
 from models.aluno import Aluno
@@ -39,19 +37,14 @@ def salvar_alunos(lista):
 
 def adicionar_aluno(aluno):
     try:
-        # le arquivo em formato de adicao (append)
         alunos = carregar_alunos()
         
-        # gera novo id
         proximo_id = ut.calcular_proximo_id(alunos)
         
-        # atribui novo id a editora que quer inserir
         aluno.id = proximo_id
             
-        # adiciona a nova editora na lista
         alunos.append(aluno)
                 
-        # salva a nova lista no arquivo
         return salvar_alunos(alunos), aluno
     except Exception as e:
         print(e)
