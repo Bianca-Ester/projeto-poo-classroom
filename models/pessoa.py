@@ -1,13 +1,14 @@
-#CORRIRGIR DIAGRAMA, APLICAR E VER UTILIDADE
-
 class Pessoa:
-    def __init__(self, senha, matricula):
-        self.__senha = senha
+    def __init__(self, matricula, senha, id=None):
         self.matricula = matricula
+        self.__senha = senha
+        self.id = id
 
     def to_dict(self):
         return{
             'id': self.id,
-            'senha': self.__senha,
-            'matricula': self.matricula
+            'matricula': self.matricula,
+            'senha': self.__senha
         }
+
+
