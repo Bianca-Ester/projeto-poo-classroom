@@ -1,5 +1,3 @@
-#CHECAR UTILIDADE
-
 import json
 import os
 from models.professor import Professor
@@ -39,19 +37,14 @@ def salvar_professores(lista):
 
 def adicionar_professor(professor):
     try:
-        # le arquivo em formato de adicao (append)
         professores = carregar_professores()
         
-        # gera novo id
         proximo_id = ut.calcular_proximo_id(professores)
         
-        # atribui novo id a editora que quer inserir
         professor.id = proximo_id
-            
-        # adiciona a nova editora na lista
+
         professores.append(professor)
                 
-        # salva a nova lista no arquivo
         return salvar_professores(professores), professor
     except Exception as e:
         print(e)
