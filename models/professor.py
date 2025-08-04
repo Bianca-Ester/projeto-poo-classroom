@@ -1,8 +1,8 @@
-#CORRIRGIR DIAGRAMA, APLICAR E VER UTILIDADE
-
 from models.pessoa import Pessoa
 
 class Professor(Pessoa):
-    def __init__(self, senha, matricula, turma=None):
-        super().__init__( senha, matricula)
+    def __init__(self, matricula, senha, id=None, turma=None):
+        super().__init__(matricula, senha, id)
         self.turma = turma
+
+
