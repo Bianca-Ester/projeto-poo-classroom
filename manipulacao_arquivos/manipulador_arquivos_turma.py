@@ -1,5 +1,3 @@
-#CHECAR UTILIDADE
-
 import json
 import os
 from models.turma import Turma
