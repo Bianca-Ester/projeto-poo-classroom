@@ -39,3 +39,4 @@ class JanelaPrincipal:
     def abrir_janela_login(self):
         self.limpar_widgets()
         JanelaLogin(self.janela)
+
