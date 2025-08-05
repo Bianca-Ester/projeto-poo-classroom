@@ -24,7 +24,7 @@ class JanelaCadastro:
         self.entrada_senha.grid(row=1, column=1, sticky="W", padx=5, pady=5)
 
         opcoes = ["Aluno", "Professor"]
-        self.combobox = ttk.Combobox(self.frame, values=opcoes)
+        self.combobox = ttk.Combobox(self.frame, values=opcoes, state="readonly")
         self.combobox.grid(row=2, column=0, padx=5, pady=5, columnspan=2)
         self.combobox.set("Selecione uma opção")
 
@@ -41,7 +41,7 @@ class JanelaCadastro:
         matricula = self.entrada_matricula.get()
         senha = self.entrada_senha.get()
         
-        professor = Professor(senha, matricula)       
+        professor = Professor(matricula, senha)       
         resultado, professor = map.adicionar_professor(professor)                
         ut.exibir_mensagem(resultado, "Cadastrado com sucesso!", "Erro no cadastro.")       
         self.limpar_campos()
@@ -52,21 +52,24 @@ class JanelaCadastro:
         matricula = self.entrada_matricula.get()
         senha = self.entrada_senha.get()
         
-        aluno = Aluno(senha, matricula)       
+        aluno = Aluno(matricula, senha)       
         resultado, aluno = maa.adicionar_aluno(aluno)                
         ut.exibir_mensagem(resultado, "Cadastrado com sucesso!", "Erro no cadastro.")       
         self.limpar_campos()
         self.entrada_matricula.focus()
 
     def check_preenchimento_campos(self):
-        matricula = self.entrada_matricula.get()
-        senha = self.entrada_senha.get()        
+        matricula_digitada = self.entrada_matricula.get()
+        senha_digitada = self.entrada_senha.get()        
         recuperacao_combobox = self.combobox.get()
 
-        if not matricula or not senha or not recuperacao_combobox:
+        if not matricula_digitada or not senha_digitada or not recuperacao_combobox:
             messagebox.showerror("Erro", "Todos os campos devem ser preenchidos")
         else:
-            self.selecao_combobox()
+            if map.buscar_professor_por_matricula(matricula_digitada) is not None or maa.buscar_aluno_por_matricula(matricula_digitada) is not None:
+                messagebox.showerror("Erro", "Matrícula já cadastrada")
+            else:
+                self.selecao_combobox()
 
     def selecao_combobox(self):
         recuperacao_combobox = self.combobox.get()
