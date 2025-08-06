@@ -6,9 +6,10 @@ class Pessoa:
 
     def to_dict(self):
         return{
-            'id': self.id,
             'matricula': self.matricula,
-            'senha': self.senha
+            'senha': self.senha,
+            'id': self.id,
         }
+
 
 
