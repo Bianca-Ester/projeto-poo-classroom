@@ -1,3 +1,5 @@
+# Criar função para criar uma lista de turmas que determinada matricula faz parte
+
 import json
 import os
 from models.turma import Turma
@@ -93,3 +95,4 @@ def remover_turma(id):
     except Exception as e:
         print(e)
         return False
+
