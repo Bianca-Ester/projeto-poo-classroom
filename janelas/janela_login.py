@@ -46,18 +46,20 @@ class JanelaLogin:
 
     def check_existencia_professor(self):
         matricula_digitada = self.entrada_matricula.get()
-        
+        senha_digitada = self.entrada_senha.get()        
+
         var = map.buscar_professor_por_matricula(matricula_digitada)
-        if var is not None:
+        if var is not None and var.senha == senha_digitada:
             self.abrir_janela_principal_aluno()
         else:
             messagebox.showerror("Erro", "Professor não encontrado")
 
     def check_existencia_aluno(self):
         matricula_digitada = self.entrada_matricula.get()
-        
+        senha_digitada = self.entrada_senha.get()        
+
         var = maa.buscar_aluno_por_matricula(matricula_digitada)
-        if var is not None:
+        if var is not None and var.senha == senha_digitada:
             self.abrir_janela_principal_aluno()
         else:
             messagebox.showerror("Erro", "Aluno não encontrado")
@@ -81,4 +83,5 @@ class JanelaLogin:
             self.check_existencia_aluno()
         else:
             messagebox.showerror('Erro', 'Selecione aluno ou professor')
+
 
