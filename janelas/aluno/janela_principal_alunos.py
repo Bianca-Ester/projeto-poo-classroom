@@ -1,6 +1,6 @@
 from tkinter import Tk, Menu
-from janelas.aluno.janelas.janela_acessar_turma import JanelaAcessarTurma
-from janelas.aluno.janelas.janela_sair_turma import JanelaSairTurma
+from janelas.aluno.frames.janela_acessar_turma import JanelaAcessarTurma
+from janelas.aluno.frames.janela_sair_turma import JanelaSairTurma
 
 class JanelaPrincipalAluno:
     def __init__(self):
@@ -8,10 +8,10 @@ class JanelaPrincipalAluno:
         self.janela.title("Área do Aluno")
 
         self.menu_bar = Menu(self.janela)
+        self.janela.config(menu=self.menu_bar)
 
-        self.menu_turmas = Menu(self.menu_bar, tearoff=0)
-        self.menu_turmas.add_command(label="Buscar", command=self.abrir_janela_acessar_turma)
-        self.menu_turmas.add_command(label="Desinscrever", command=self.abrir_janela_sair_turma)
+        self.menu_bar.add_command(label="Buscar", command=self.abrir_janela_acessar_turma)
+        self.menu_bar.add_command(label="Desinscrever", command=self.abrir_janela_sair_turma)
         self.menu_bar.add_command(label="Sair", command=self.janela.quit)
 
         self.centralizar_janela()
