@@ -80,3 +80,5 @@ class JanelaCadastro:
             self.cadastrar_aluno()
         else:
             messagebox.showerror('Erro', 'Selecione aluno ou professor')
+
+
